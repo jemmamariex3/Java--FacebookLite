@@ -160,6 +160,5 @@ class FacebookLite{
             System.out.println(posts[i]);
          }
       }
-      
    }
 }

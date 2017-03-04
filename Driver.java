@@ -122,5 +122,6 @@ class Driver{
                      "\n\t10: Toggle Posts\n\t11: Toggle Age\n\t12: Toggle Status\n\t13: Print Profile");
          }
       }
+      scan.close();
    }
 }
