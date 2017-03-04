@@ -120,7 +120,7 @@ class Driver{
                System.out.println("Please select between 0 - 13. \nOptions:\n\t0: exit application\n\t1: Add a Friend\n\t2: Add Post" +
                      "\n\t3: Set Age\n\t4: Set Status\n\t5: Remove Last Friend\n\t6: Remove ALL Friends\n\t7: Remove Last Post\n\t8: Remove All Posts\n\t9: Toggle Friends" +
                      "\n\t10: Toggle Posts\n\t11: Toggle Age\n\t12: Toggle Status\n\t13: Print Profile");
-         };
+         }
       }
    }
 }
