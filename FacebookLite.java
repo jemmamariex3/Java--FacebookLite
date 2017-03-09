@@ -29,6 +29,23 @@ class FacebookLite{
    private boolean showAge;
    private boolean showStatus;
    
+   //log methods
+   public void log(String str){
+      System.out.println(str);
+   }
+   public void log(String str, String input){
+      System.out.println(str+ ": "+input);
+   }
+   public void log(int num, String input){
+      System.out.println(num+ ": "+input);
+   }
+   public void log(boolean val, String input){
+      System.out.println(val+ ": "+input);
+   }
+   public void log(String str, int input){
+      System.out.println(str+ ": "+input);
+   }
+   
    //Constructor: initializing variables above
    public FacebookLite (String name, int age){
       this.name = name;
@@ -46,6 +63,8 @@ class FacebookLite{
       //Initializing friends and posts array
       for(int i =0; i<friends.length; i++){
          friends[i] = "";
+      }
+      for(int i = 0; i<posts.length; i++){
          posts[i] ="";
       }
    }
@@ -57,7 +76,7 @@ class FacebookLite{
          fidx++;
       }
       else{
-         System.out.println("Unable to add friend. Array is full.");
+         log("Unable to add friend. Array is full.");
       }
    }
    
@@ -68,7 +87,7 @@ class FacebookLite{
          pidx++;
       }
       else{
-         System.out.println("Unable to add post. Array is full.");
+         log("Unable to add post. Array is full.");
       }
    }
    
@@ -140,24 +159,24 @@ class FacebookLite{
    
    //print FacebookLite Profile
    public void printProfile(){
-      System.out.println("\nName: " +name);
+      log("\nName: ", name);
       if(showAge){
-         System.out.println("\nAge: " +age);
+         log("\nAge: ", age);
       }
       if(showStatus){
-         System.out.println("\nStatus: " +status);
+         log("\nStatus: ", status);
       }
       if(showFriends){
-         System.out.println("\nFriends: " +fidx);
+         log("\nFriends: ", fidx);
          for(int i = 0; i < friends.length; i++){
-            System.out.println(friends[i]);
+            log(friends[i]);
          }
       }
          
       if(showPosts){
-         System.out.println("\nPosts: " +pidx);
+         log("\nPosts: ", pidx);
          for(int i = 0; i < posts.length; i++){
-            System.out.println(posts[i]);
+            log(posts[i]);
          }
       }
    }
