@@ -10,8 +10,8 @@ It is expected to be able to store and pull data through constructors.
 - Declare/Initialize an object of this class by calling the constructor and providing 2 arguments: name, age.
 
 Terminal:
-   * Compile: "javac FacebookLite.java Driver.java"
-   * Run: "java Driver"
+Compile: "javac FacebookLite.java Driver.java"
+Run: "java Driver"
 _________________________________________________________________________
 Version 2:
 
