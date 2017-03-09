@@ -15,7 +15,8 @@ Terminal:
 _________________________________________________________________________
 Version 2:
 
-Added log();
-try/catch
+Allows user to input their own name and age
+Added try/catch statements to find exceptions and validate user inputs
+Created log methods to use in place of System.out.println methods
 
 _________________________________________________________________________
