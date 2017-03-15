@@ -14,8 +14,14 @@ Terminal:
    Run: "java Driver"
 _________________________________________________________________________
 */
-
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
+
 class Driver{
    
    public static void log(String str){
@@ -35,41 +41,53 @@ class Driver{
    }
    
    public static void main (String [] arg) {
+      
       Scanner scan = new Scanner(System.in);
       String userName = "";
       int userAge = 0;
       boolean isUserNameValid = true;
       boolean isUserAgeValid = true;
-      
-      while(isUserNameValid){
-         log("Enter your name:");
-         userName = scan.nextLine();
-      
-         if(userName.trim().isEmpty()){
-            log("\tERROR: Please enter a valid name.\n");
-         }
-         else{
-            isUserNameValid = false;
-         }
+   
+      String fileName = "fblSave.txt";
+      File f = new File(fileName);
+      if(f.exists() && !f.isDirectory()) {
+         System.out.println("Found user profile, loading it...");
+         // Create a profile with some name/age
+         FacebookLite fbl = new FacebookLite("",0);
+         fbl.loadProfile(fileName);
       }
-      
-      log("Enter your age:");
-      while(isUserAgeValid){
-         try{
-            userAge = Integer.parseInt(scan.nextLine());
-            if(userAge >= 0 && userAge <= 115){
-               isUserAgeValid = false;
+      else {
+         System.out.println("Profile not found, creating a new profile...");
+               
+         while(isUserNameValid){
+            log("Enter your name:");
+            userName = scan.nextLine();
+         
+            if(userName.trim().isEmpty()){
+               log("\tERROR: Please enter a valid name.\n");
             }
             else{
-               log("\tInvalid Age. Enter a valid integer.");
+               isUserNameValid = false;
             }
          }
-         catch(NumberFormatException e){
-            log("\tInvalid Age. Enter a valid integer");
-            scan.reset();
+         
+         log("Enter your age:");
+         while(isUserAgeValid){
+            try{
+               userAge = Integer.parseInt(scan.nextLine());
+               if(userAge >= 0 && userAge <= 115){
+                  isUserAgeValid = false;
+               }
+               else{
+                  log("\tInvalid Age. Enter a valid integer.");
+               }
+            }
+            catch(NumberFormatException e){
+               log("\tInvalid Age. Enter a valid integer");
+               scan.reset();
+            }
          }
       }
-      
       FacebookLite fbl = new FacebookLite(userName, userAge);
       boolean exit = false;
       int newAge = 0;
@@ -82,12 +100,18 @@ class Driver{
             "\n\t3: Set Age\n\t4: Set Status\n\t5: Remove Last Friend\n\t6: Remove ALL Friends\n\t7: Remove Last Post\n\t8: Remove All Posts\n\t9: Toggle Friends" +
             "\n\t10: Toggle Posts\n\t11: Toggle Age\n\t12: Toggle Status\n\t13: Print Profile");
       while (!exit){
-         opt = Integer.parseInt(scan.nextLine());
+         try{
+            opt = Integer.parseInt(scan.nextLine());
+         }
+         catch(NumberFormatException e){
+            log("Please enter a valid integer from 1 - 13.");
+         }
          
          switch(opt){
             //exiting application option
             case 0:
                exit = true;
+               fbl.saveProfile();
                log("Bye Bye!");
                break;
             //adding friend option

@@ -16,6 +16,13 @@ Terminal:
 _________________________________________________________________________
 */
 
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 class FacebookLite{
    private String name;
    private int age;
@@ -179,5 +186,78 @@ class FacebookLite{
             log(posts[i]);
          }
       }
+   }
+   public void loadProfile(String fileName){
+      String fileLine = "";
+      String [] inputArr = new String[15];
+      
+      try {
+         // Read file
+         FileReader data = new FileReader(fileName);
+         // Wrap FileReader with BufferedReader
+         BufferedReader br = new BufferedReader(data);
+         
+         int tmpIdx=0;
+         while((fileLine = br.readLine()) != null) {
+            System.out.println(fileLine);
+            
+         }
+      
+         // close the file
+         br.close();
+      }
+      catch(FileNotFoundException ex) {
+         System.out.println("File not found: " + fileName);
+      }
+      catch(IOException ex) {
+         System.out.println("Error reading file: " + fileName);
+      }
+      
+      name = inputArr[0];
+      age = Integer.parseInt(inputArr[1]);
+      status = inputArr[2];
+      fidx = Integer.parseInt(inputArr[3]);
+      for(int i = 0; i < fidx; i++){
+         friends[i] = inputArr[4+i];
+      }
+      pidx= Integer.parseInt(inputArr[4+fidx]);
+      for(int i =0; i<pidx; i++){
+         posts[i] = inputArr[5+i];
+      }
+   
+   }
+   public void saveProfile(){
+      String fileName = "fblSave.txt";
+   
+      try {
+         File file = new File(fileName);
+         // creates the file
+         file.createNewFile();
+         // create FileWriter object
+         FileWriter writer = new FileWriter(file);
+         // output to file
+         writer.write(name +"\n");
+         writer.write(age +"\n");
+         writer.write(status +"\n");
+         writer.write(fidx+ "\n");
+         
+         //loop to print out friend for text file
+         for(int i = 0; i < fidx; i++){
+            writer.write(friends[i]+ "\n");
+         }
+         
+         writer.write(pidx+ "\n");
+   
+         for(int i = 0; i < pidx; i++){
+            writer.write(posts[i]+ "\n");
+         }
+         
+         writer.flush();
+         writer.close();
+      }
+      catch(IOException ex) {
+         System.out.println("Error writing to file: " + fileName);
+      }
+   
    }
 }
