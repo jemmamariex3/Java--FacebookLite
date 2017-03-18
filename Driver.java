@@ -43,6 +43,7 @@ class Driver{
    public static void main (String [] arg) {
       
       Scanner scan = new Scanner(System.in);
+      FacebookLite fbl;
       String userName = "";
       int userAge = 0;
       boolean isUserNameValid = true;
@@ -53,7 +54,7 @@ class Driver{
       if(f.exists() && !f.isDirectory()) {
          System.out.println("Found user profile, loading it...");
          // Create a profile with some name/age
-         FacebookLite fbl = new FacebookLite("",0);
+         fbl = new FacebookLite("",0);
          fbl.loadProfile(fileName);
       }
       else {
@@ -87,8 +88,8 @@ class Driver{
                scan.reset();
             }
          }
+         fbl = new FacebookLite(userName, userAge);
       }
-      FacebookLite fbl = new FacebookLite(userName, userAge);
       boolean exit = false;
       int newAge = 0;
       int opt = 0;

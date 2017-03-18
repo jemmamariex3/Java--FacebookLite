@@ -199,7 +199,8 @@ class FacebookLite{
          
          int tmpIdx=0;
          while((fileLine = br.readLine()) != null) {
-            System.out.println(fileLine);
+            inputArr[tmpIdx++] = fileLine;
+//            System.out.println(fileLine);
             
          }
       
