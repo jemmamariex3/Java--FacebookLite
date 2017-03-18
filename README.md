@@ -20,3 +20,8 @@ Version 2:
 * Created log methods to use in place of System.out.println methods
 
 _________________________________________________________________________
+Version 3:
+* Added I/O
+* Saving current data onto outside text
+* Load saved data into the program if file exists
+* If file is missing, user will create a new FacebookLite profile
